@@ -1,0 +1,28 @@
+# Ignore development directories
+src/demo.ts
+src/**/*.test.ts
+src/**/*.spec.ts
+
+# Docs and meta
+BOOK_OF_LOOPS.md
+QUICK_START.md
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+SECURITY.md
+CHANGELOG.md
+
+# Git & tooling
+.gitignore
+.github/
+.vscode/
+.idea/
+
+# Node & build artifacts
+node_modules/
+dist/
+coverage/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
