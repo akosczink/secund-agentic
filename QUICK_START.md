@@ -1,17 +1,12 @@
-# 🚀 QUICK START — SECUND Agentic Engine
-
-This guide helps you run the dignity-first, burnout-prevention agent in **under 60 seconds**.
-
----
-
-# 1️⃣ Install dependencies
-
-```bash
+🚀 QUICK START — SECUND Agentic Engine
+Run the dignity-first, burnout-prevention agent in under 60 seconds.
+1️⃣ Install & setup
 git clone https://github.com/akosczink/secund-agentic
 cd secund-agentic
 npm install
 2️⃣ Run the demo loop
-The repo contains a runnable example that executes the retention/burnout prediction loop.
+A runnable example is included to demonstrate the
+retention/burnout prediction workflow.
 npm run demo
 Expected output:
 {
@@ -42,26 +37,26 @@ async function main() {
 }
 
 main();
-4️⃣ File structure overview
+4️⃣ Repository structure
 /
-├── BOOK_OF_LOOPS.md
-├── QUICK_START.md
+├── BOOK_OF_LOOPS.md           # full architecture
+├── QUICK_START.md             # this file
 ├── SECURITY.md
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
 ├── LICENSE
 │
 ├── src/
-│   ├── agentic-retention-loop.ts
-│   ├── retention-agent.ts
-│   ├── demo.ts
-│   └── loops/   (reserved)
+│   ├── agentic-retention-loop.ts   # core decision loop (v0.1)
+│   ├── retention-agent.ts          # high-level wrapper
+│   ├── demo.ts                     # runnable example
+│   └── loops/                      # reserved for future expansion
 │
 └── package.json
 5️⃣ Next steps (optional)
-⭐ Star the repo
-✏️ Open an Issue with your ideas
-🧪 Try modifying a loop and see the results
-🤝 Contact for pilot testing: akos.czink@gmail.com
-🔥 Your agent is now running.
+⭐ Star the repository
+🧪 Modify a loop and observe the behaviour
+📝 Open an Issue with improvement ideas
+🤝 For pilot testing: akos.czink@gmail.com
+🔁 SECUND Agentic Mantra
 Dignity → Insight → Action → Reflection → Improvement → Infinity
