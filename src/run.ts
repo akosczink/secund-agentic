@@ -1,27 +1,19 @@
-import { RetentionAgent } from "./retention-agent";
-import { runRetentionLoop } from "./agentic-retention-loop";
+import { RetentionAgent, EmployeeSignal } from "./retention-agent";
 
-async function main() {
-  console.log("=== SECUND Retention Engine v1 ===");
-
-  // Sample employee signal
-  const signal = {
-    stress: 0.62,
-    engagement: 0.55,
-    performance: 0.70,
-    recent_conflicts: 1
+function main() {
+  const signal: EmployeeSignal = {
+    stress: 0.7,
+    engagement: 0.4,
+    performance: 0.6,
+    recent_conflicts: 2,
   };
 
-  console.log("\nInput:", signal);
+  console.log("=== SECUND Agentic Retention Loop v0.1 ===");
+  console.log("Input:", signal);
 
-  const assessment = RetentionAgent(signal);
-  console.log("\nAssessment:", assessment);
+  const result = RetentionAgent(signal);
 
-  console.log("\nRunning agentic decision loop...");
-  const loopResult = await runRetentionLoop(signal);
-
-  console.log("\n=== Loop Result ===");
-  console.log(loopResult);
+  console.log("Result:", result);
 }
 
 main();
