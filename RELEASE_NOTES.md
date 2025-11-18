@@ -1,3 +1,4 @@
+# RELEASE_NOTES.md
 SECUND Agentic Engine — Public Research Prototype  
 Version: 0.1.0  
 Date: 2025-11-18
