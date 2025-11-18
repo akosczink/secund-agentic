@@ -1,193 +1,208 @@
-BOOK OF LOOPS — The Agentic Decision Loop Architecture (SECUND OS Edition)
+# 📘 **BOOK OF LOOPS — The Agentic Decision Loop Architecture (SECUND OS Edition)**
 
-Dignity-First Autonomous Systems · Agentic Retention · Burnout Prevention Engine
+### *Dignity-First Autonomous Systems · Agentic Retention · Burnout Prevention Engine*
 
-Version 1.0 — November 2025
+**Version 1.0 — November 2025**
 
-⸻
+---
 
-📖 Introduction
+## 📖 **Introduction**
 
-This document is the official loop architecture of the SECUND Agentic Engine — a dignity-first, self-improving agentic decision support system (ADSS).
+This document defines the official loop architecture of the **SECUND Agentic Engine** —
+a dignity-first, self-improving **agentic decision support system (ADSS)**.
 
-It is:
-	•	self-improving
-	•	self-reflective
-	•	respect-centered (dignity-first)
-	•	capable of autonomous intervention
-	•	capable of estimating real-time psychological and operational risks
+The engine is:
 
-This book contains the 18 main decision loops forming the architecture of:
-	•	SECUND AI OS
-	•	The Agentic Retention Engine
+* self-improving
+* self-reflective
+* respect-centered (dignity-first)
+* capable of autonomous intervention
+* capable of estimating real-time psychological & operational risks
 
-Each loop functions independently but integrates into a three-layer structure:
-	1.	Individual Loop — employee level
-	2.	Organizational Loop — team level
-	3.	Systemic Loop — global & organizational trends
+This book contains the **18 foundational decision loops** powering:
 
-⸻
+* **SECUND AI OS**, and
+* **The Agentic Retention Engine**
 
-🧠 1. THE 18 AGENTIC DECISION LOOPS
+Each loop operates independently but integrates into a three-layer structure:
 
-All loops follow the same decision pattern:
+1. **Individual Loop** — employee level
+2. **Organizational Loop** — team & leadership level
+3. **Systemic Loop** — company-wide & global trends
 
+---
+
+# 🧠 **1. The 18 Agentic Decision Loops**
+
+All loops follow the universal SECUND decision pattern:
+
+```
 Trigger → Sense → Evaluate → Decide → Act → Reflect → Improve
+```
 
-1. Burnout Early Warning Loop
+### **1. Burnout Early Warning Loop**
 
-Detects early signs of overload (workload, sentiment, overcommitment).
+Detects early overload signals (workload, sentiment, overcommitment).
 
-2. Psychological Safety Loop
+### **2. Psychological Safety Loop**
 
 Measures how safe people feel reporting issues or making mistakes.
 
-3. Retention Risk Loop
+### **3. Retention Risk Loop**
 
-Predictive model estimating the probability of leaving (0–1).
+Predictive model estimating probability of leaving (0–1).
 
-4. Workload Equity Loop
+### **4. Workload Equity Loop**
 
-Balances workload across individuals or teams.
+Balances workload across teams and individuals.
 
-5. Intervention Loop
+### **5. Intervention Loop**
 
-Triggers suggested or autonomous interventions when risk is detected.
+Triggers suggested or autonomous interventions.
 
-6. Productivity Health Loop
+### **6. Productivity Health Loop**
 
-Monitors the balance between performance and recovery.
+Monitors performance–recovery balance.
 
-7. Motivation Momentum Loop
+### **7. Motivation Momentum Loop**
 
 Tracks medium-term motivational trends.
 
-8. Leadership Quality Loop
+### **8. Leadership Quality Loop**
 
-Evaluates the quality of leader–team dynamics.
+Evaluates leader–team dynamics.
 
-9. Team Coherence Loop
+### **9. Team Coherence Loop**
 
-Measures alignment and directional unity within the team.
+Measures alignment and directional unity.
 
-10. Skill Drift Loop
+### **10. Skill Drift Loop**
 
-Detects stagnation or deviation from role/company focus.
+Detects stagnation or drift from role/company focus.
 
-11. Cultural Fit Loop
+### **11. Cultural Fit Loop**
 
-Identifies cultural friction or value misalignment.
+Identifies value conflicts or cultural friction.
 
-12. Sentiment Loop
+### **12. Sentiment Loop**
 
-Monitors emotional tone within communication channels.
+Monitors emotional tone across communication channels.
 
-13. Social Load Loop
+### **13. Social Load Loop**
 
-Maps who supports whom and identifies isolated team members.
+Maps support networks and identifies isolation.
 
-14. Silent Exodus Loop
+### **14. Silent Exodus Loop**
 
 Detects “mentally checked-out” employees (quiet quitting).
 
-15. Energy Pulse Loop
+### **15. Energy Pulse Loop**
 
-Tracks the team’s energy level in real time.
+Tracks real-time team energy level.
 
-16. Fairness Loop
+### **16. Fairness Loop**
 
-Detects and corrects unfair or biased situations.
+Detects and corrects biased or unfair situations.
 
-17. Flow State Loop
+### **17. Flow State Loop**
 
-Measures the frequency and depth of individual flow states.
+Measures the frequency & intensity of productive flow.
 
-18. Meta-Reflection Loop
+### **18. Meta-Reflection Loop**
 
-Looks back across all loops to improve the overall system.
+Consolidates insights across all loops for system-wide improvement.
 
-⸻
+---
 
-⚙ 2. ARCHITECTURE OVERVIEW
+# ⚙ **2. Architecture Overview**
 
-(Agentic OS v1 — SECUND Edition)
+*(Agentic OS v1 — SECUND Edition)*
 
+```
 ┌────────────────────────────────┐
 │           Systemic Loop        │
-│  (organization + global trend) │
+│     (organization + trends)    │
 └───────────────▲────────────────┘
                 │
 ┌───────────────┴────────────────┐
-│        Organizational Loop      │
-│ (team dynamics + leadership)    │
+│       Organizational Loop       │
+│    (team dynamics + leadership) │
 └───────────────▲────────────────┘
                 │
 ┌───────────────┴────────────────┐
 │         Individual Loop         │
 │ (burnout, retention, energy)   │
 └────────────────────────────────┘
+```
 
-Data continuously flows across all three levels:
+Data flows continuously:
 
-Individual → Organizational → Systemic → back to Individual
+**Individual → Organizational → Systemic → back to Individual**
 
-This creates a self-improving loop cycle.
+→ forming a self-improving loop cycle.
 
-⸻
+---
 
-🧩 3. LOOP SPECIFICATION FORMAT
+# 🧩 **3. Loop Specification Format**
 
-Every loop follows the same structure:
+Every loop adheres to the same formal structure:
 
+```
 Trigger:
-  What starts the loop?
+  What event or threshold activates the loop?
 
 Sense:
-  What data does it observe?
+  What data does the loop observe?
 
 Evaluate:
-  How does it calculate or estimate the situation?
+  How is the situation assessed?
 
 Decide:
   What decision does the loop choose?
 
 Act:
-  What operational action does it take?
+  What action is executed?
 
 Reflect:
-  What does it learn from this outcome?
+  What is learned from the outcome?
 
 Improve:
-  How does the model evolve next time?
+  How is the model updated for next time?
+```
 
-Both retention-agent.ts and agentic-retention-loop.ts follow this format.
+Both **retention-agent.ts** and **agentic-retention-loop.ts** follow this specification.
 
-⸻
+---
 
-🔍 4. AGENTIC RETENTION MODEL (V1)
+# 🔍 **4. Agentic Retention Model (V1)**
 
-The core model computes a risk score:
+The core model computes a weighted **risk score**:
 
-risk = w1 * burnout
-     + w2 * sentiment
-     + w3 * workload
-     + w4 * motivation
-     + w5 * leadershipFit
-     + w6 * fairness
+```text
+risk =
+  w1 * burnout +
+  w2 * sentiment +
+  w3 * workload +
+  w4 * motivation +
+  w5 * leadershipFit +
+  w6 * fairness
+```
 
-Output:
+Output shape:
 
+```json
 {
-  risk: number (0–1),
-  recommendation: string,
-  loopSignals: object
+  "risk": number,
+  "recommendation": string,
+  "loopSignals": object
 }
+```
 
+---
 
-⸻
+# 🚀 **5. Example Loop (TypeScript Implementation)**
 
-🚀 5. Example Loop (TypeScript Implementation)
-
+```ts
 export async function agenticRetentionLoop(signal) {
   return {
     risk:
@@ -207,23 +222,26 @@ export async function agenticRetentionLoop(signal) {
     loopsEngaged: [
       "Burnout Early Warning Loop",
       "Sentiment Loop",
-      "Workload Equity Loop",
-    ],
+      "Workload Equity Loop"
+    ]
   };
 }
+```
 
+---
 
-⸻
+# 🧪 **6. Demo (Runnable Example)**
 
-🧪 6. DEMO (Runnable Example)
+**Run:**
 
-Running:
-
+```bash
 npm install
 npm run demo
+```
 
-src/demo.ts
+**src/demo.ts**
 
+```ts
 import { retentionAgent } from "./retention-agent";
 
 async function main() {
@@ -232,7 +250,7 @@ async function main() {
     performance: 0.73,
     burnoutRisk: 0.41,
     sentimentScore: -0.12,
-    workload: 0.88,
+    workload: 0.88
   };
 
   const result = await retentionAgent(signal);
@@ -240,32 +258,41 @@ async function main() {
 }
 
 main();
+```
 
+---
 
-⸻
+# 🗺 **7. Roadmap (2025 Q4 → 2026 Q2)**
 
-🗺 7. Roadmap (2025 Q4 → 2026 Q2)
+### ✓ v1.0 — Baseline loops
 
-✓ v1.0 — Baseline loops
+### ✓ v1.1 — Autonomous interventions
 
-✓ v1.1 — Autonomous interventions
+### ✓ v1.2 — Team + systemic integration
 
-✓ v1.2 — Team + systemic integration
+### ☐ v2.0 — SECUND OS full integration
 
-☐ v2.0 — SECUND OS full integration
+### ☐ v2.2 — Pilot with 10 companies
 
-☐ v2.2 — Pilot with 10 companies
+### ☐ v3.0 — Viral loop + public dashboard
 
-☐ v3.0 — Viral loop + public dashboard
+---
 
-⸻
+# 🏁 **8. License**
 
-🏁 8. License
+MIT — open source, built on dignity-first principles.
 
-MIT — open source, with dignity-first principles.
+---
 
-⸻
+# 🎉 **9. The SECUND Agentic Engine Mantra**
 
-🎉 9. The SECUND Agentic Engine Mantra
+**“Dignity → Insight → Action → Reflection → Improvement → Infinity.”**
 
-“Dignity → Insight → Action → Reflection → Improvement → Infinity.
+---
+
+# 📎 **Document Footer**
+
+*This is an official technical specification of the SECUND Agentic Engine.*
+*Version: 1.0 (2025-11)*
+*Maintainer: Ákos József Czink*
+*Contact: [akos.czink@gmail.com](mailto:akos.czink@gmail.com)*
