@@ -3,34 +3,63 @@
 **Dignity-first agentic decision loops — autonomous retention & burnout prevention engine (SECUND OS).**
 
 This repository contains the first public prototype of the **SECUND Agentic Science Engine** —  
-an autonomous, dignity-first prediction → intervention → reflection loop for protecting human
-wellbeing inside modern organizations.
-
-### 🚀 What this agent does
-- predicts churn / burnout risk  
-- designs a *dignity-first* intervention (no spyware, no humiliation, no productivity-police)  
-- reflects on outcomes and self-improves  
-- zero-tofu, deterministic core  
-- built on 18 SECUND self-improving loops  
-
-### 📁 Current files
-- `src/agentic-retention-loop.ts` — v0.1 retention/burnout agent  
-- `package.json` — minimal TS runtime  
-- `.gitignore` — TS-ready  
-
-### 🧠 Philosophy
-**Human dignity is the invariant.  
-Loop autonomy is the engine.  
-Reflection is the governance.**
+a dignity-first, autonomous prediction → intervention → reflection loop designed to protect
+human wellbeing inside modern organizations.
 
 ---
 
-## Coming next (public roadmap)
+## 🚀 What this agent does
+
+- predicts churn / burnout risk  
+- designs *dignity-first* interventions (no surveillance, no productivity-policing)  
+- performs autonomous actions when thresholds are crossed  
+- reflects on outcomes and improves itself  
+- based on **18 SECUND self-improving loops**  
+- zero-tofu, deterministic decision core  
+
+---
+
+## 📘 Full Architecture
+
+For the full set of decision loops, architecture diagrams, and specifications:
+
+👉 **[BOOK_OF_LOOPS.md](BOOK_OF_LOOPS.md)**
+
+This includes the **18 agentic loops**, the tri-level architecture  
+(Individual → Organizational → Systemic), and the V1 retention model.
+
+---
+
+## 📁 Repository Structure
+
+- **`src/agentic-retention-loop.ts`** — core retention/burnout loop (v0.1)  
+- **`src/retention-agent.ts`** — high-level agent wrapper  
+- **`package.json`** — minimal TS runtime  
+- **`tsconfig.json`** — strict TS settings  
+- **`.gitignore`** — TS-ready  
+
+---
+
+## 🧠 Philosophy
+
+**Human dignity is the invariant.  
+Agentic autonomy is the engine.  
+Reflection is the governance.**
+
+We build systems that help people — not systems that control people.
+
+---
+
+## 🛣️ Public Roadmap
+
 - Agentic Wednesday demo  
-- Burnout multiloop  
-- Stripe activation  
-- Employer pilot x3  
-- SECUND OS integration layer  
+- Burnout multi-loop expansion (v0.2)  
+- Team-level & systemic loop integration (v0.3)  
+- Supabase + Stripe activation  
+- Employer pilot ×3  
+- SECUND OS integration bridge (v1.0)  
+
+---
 
 Built by **Ákos Czink**  
-SECUND — The Dignity OS
+Part of the **SECUND — The Dignity OS** ecosystem.
