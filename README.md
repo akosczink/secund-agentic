@@ -77,4 +77,3 @@ We design systems that support people —
 
 Built by **Ákos Czink**  
 Part of the **SECUND — The Dignity OS** research ecosystem.
-
