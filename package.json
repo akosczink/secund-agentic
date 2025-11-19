@@ -1,12 +1,24 @@
 {
   "name": "secund-agentic",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Dignity-first agentic decision loops — autonomous retention & burnout prevention engine.",
+  "main": "run.ts",
   "scripts": {
-    "dev": "tsx src/run.ts",
-    "build": "tsc"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node run.ts"
+  },
+  "keywords": [
+    "agentic",
+    "hr-tech",
+    "burnout-prevention"
+  ],
+  "author": "Ákos József Czink",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^5.0.0"
   },
   "devDependencies": {
-    "tsx": "^4.7.0",
-    "typescript": "^5.4.0"
+    "@types/node": "^18.0.0",
+    "ts-node": "^10.9.1"
   }
 }
