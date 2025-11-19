@@ -2,13 +2,9 @@
 import { AgentSignal, AgentResult, ModelWeights } from './types';
 import { DignityGuard } from './security';
 
-/**
- * META-LOOP CONFIGURATION
- * In production, these are pulled from the Redis State Store,
- * updated weekly by the Meta-Reflection Loop (Loop 18).
- */
+// Simulated dynamic weights from the Meta-Loop
 const DYNAMIC_WEIGHTS: ModelWeights = {
-  burnout: 0.35,    // Increased weight due to Q4 high-stress signals
+  burnout: 0.35,
   sentiment: 0.25,
   workload: 0.20,
   motivation: 0.15,
@@ -21,33 +17,36 @@ export async function retentionAgent(signal: AgentSignal): Promise<AgentResult> 
   // 1. DIGNITY PROTOCOL: Anonymize immediately
   const secureId = DignityGuard.hashIdentity(signal.employeeId);
 
-  // 2. SENSE & EVALUATE (The Core Formula)
-  // Risk = Weighted sum of signals corrected by sentiment inverse
-  // Logic derived from Loop 3 (Retention Risk Loop)
+  // 2. CALCULATE RISK
+  // Sentiment is inverted (Higher sentiment = Lower risk)
+  // Normalized: (-1 to 1) -> (0 to 1)
+  const normalizedSentimentRisk = 1 - ((signal.sentimentScore + 1) / 2);
+  
   const riskScore = 
     (signal.burnoutRisk * DYNAMIC_WEIGHTS.burnout) +
-    ((1 - (signal.sentimentScore + 1) / 2) * DYNAMIC_WEIGHTS.sentiment) + // Normalize sentiment
+    (normalizedSentimentRisk * DYNAMIC_WEIGHTS.sentiment) +
     (signal.workload * DYNAMIC_WEIGHTS.workload) +
-    (0.5 * DYNAMIC_WEIGHTS.motivation); // Baseline assumption if missing
+    (0.5 * DYNAMIC_WEIGHTS.motivation); // Baseline assumption
 
-  // 3. DECIDE (The Intervention Matrix)
+  // 3. DECIDE INTERVENTION
   let recommendation = "";
   const activeLoops: string[] = ["Meta-Reflection Loop"];
 
-  if (signal.burnoutRisk > 0.7) {
-    recommendation = "URGENT: Burnout Early Warning Triggered. Suggest 'Decompression Day'.";
+  if (signal.burnoutRisk > 0.6) {
+    recommendation = "URGENT: Burnout Risk High. Suggest 'Decompression Day'.";
     activeLoops.push("Loop 1: Burnout Early Warning");
-  } else if (signal.sentimentScore < -0.3) {
-    recommendation = "Check in with employee — negative sentiment trend detected.";
-    activeLoops.push("Loop 12: Sentiment Loop");
-  } else if (signal.workload > 0.9) {
+  } else if (signal.workload > 0.85) {
+    // Ez fog bekapcsolni a demóban!
     recommendation = "Workload Equity Alert: Rebalance tickets within 48h.";
     activeLoops.push("Loop 4: Workload Equity");
+  } else if (signal.sentimentScore < -0.2) {
+    recommendation = "Check in with employee — negative sentiment trend.";
+    activeLoops.push("Loop 12: Sentiment Loop");
   } else {
     recommendation = "Stable state. Continue monitoring.";
   }
 
-  // 4. ACT & RETURN
+  // 4. RETURN RESULT
   return {
     risk: Number(riskScore.toFixed(3)),
     recommendation,
@@ -55,7 +54,7 @@ export async function retentionAgent(signal: AgentSignal): Promise<AgentResult> 
     meta: {
       anonymizedId: secureId,
       processingTimeMs: Date.now() - start,
-      modelVersion: "v2.0-agentic"
+      dignityProtocol: "ACTIVE"
     }
   };
 }
