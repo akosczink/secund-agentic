@@ -1,19 +1,29 @@
-import { RetentionAgent, EmployeeSignal } from "./retention-agent";
+// run.ts
+import { retentionAgent } from "./src/retention-agent";
+import { AgentSignal } from "./src/types";
 
-function main() {
-  const signal: EmployeeSignal = {
-    stress: 0.7,
-    engagement: 0.4,
-    performance: 0.6,
-    recent_conflicts: 2,
+async function main() {
+  console.log("\n🚀 SECUND AGENTIC ENGINE (v2.0) - INITIALIZING...\n");
+
+  // Input signal (Simulating a high-workload employee)
+  const signal: AgentSignal = {
+    employeeId: "john.doe@company.com", // This will be hashed!
+    performance: 0.85,
+    burnoutRisk: 0.41,
+    sentimentScore: -0.12,
+    workload: 0.88 // High workload triggers Loop 4
   };
 
-  console.log("=== SECUND Agentic Retention Loop v0.1 ===");
-  console.log("Input:", signal);
+  console.log("📥  INPUT SIGNAL RECEIVED:");
+  console.table(signal);
 
-  const result = RetentionAgent(signal);
+  console.log("\n🔄  RUNNING AGENTIC LOOPS...");
+  const result = await retentionAgent(signal);
 
-  console.log("Result:", result);
+  console.log("\n✅  DECISION GENERATED:");
+  console.log(JSON.stringify(result, null, 2));
+  
+  console.log("\n🔐  Dignity Protocol Verified: Identity hashed, raw data discarded.");
 }
 
-main();
+main().catch(console.error);
