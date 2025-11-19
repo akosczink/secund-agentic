@@ -6,6 +6,7 @@ export interface AgentSignal {
   burnoutRisk: number;      // 0.0 - 1.0
   sentimentScore: number;   // -1.0 (negative) to +1.0 (positive)
   workload: number;         // 0.0 - 1.0
+  motivation: number;       // Ezt adtuk most hozzá!
 }
 
 export interface AgentResult {
