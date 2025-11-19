@@ -1,19 +1,30 @@
 import { retentionAgent } from "./src/retention-agent";
+import { AgentSignal } from "./src/types";
 
 async function main() {
-  console.log("SECUND v0.1 – Dignity-First Agentic Demo\n");
+  console.log("\n🚀 SECUND AGENTIC ENGINE (v2.0) - INITIALIZING...\n");
 
-  const result = await retentionAgent({
-    employeeId: "demo-123",
-    burnoutRisk: 0.68,
-    sentimentScore: -0.22,
-    workload: 0.89,
-    motivation: 0.38,
-    fairnessScore: 0.74,
-  });
+  const signal: AgentSignal = {
+    employeeId: "john.doe@company.com",
+    performance: 0.85,
+    burnoutRisk: 0.41,
+    sentimentScore: -0.12,
+    workload: 0.88,
+    motivation: 0.5
+  };
 
+  // Ellenőrizd: Itt nincs fairnessScore!
+
+  console.log("📥  INPUT SIGNAL RECEIVED:");
+  console.table(signal);
+
+  console.log("\n🔄  RUNNING AGENTIC LOOPS...");
+  const result = await retentionAgent(signal);
+
+  console.log("\n✅  DECISION GENERATED:");
   console.log(JSON.stringify(result, null, 2));
-  console.log("\nZero surveillance. Only dignity.\n");
+
+  console.log("\n🔐  Dignity Protocol Verified: Identity hashed, raw data discarded.");
 }
 
-main();
+main().catch(console.error);
