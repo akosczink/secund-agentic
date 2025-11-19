@@ -1,79 +1,43 @@
-# SECUND AGENTIC — Research Prototype
+# SECUND – Dignity-First Agentic Retention Engine
 
-**Autonomous, dignity-first agentic decision loops for retention & burnout prevention (SECUND OS).**
+Autonomous retention & burnout prevention system that **never tracks, scores, or surveys employees**.
 
-This repository hosts the **first public research prototype** of the  
-**SECUND Agentic Science Engine** — an autonomous, dignity-first  
-*prediction → intervention → reflection* loop designed to improve  
-human wellbeing inside modern organizations.
+Zero surveillance · 18 self-improving loops · Dignity as the only invariant
 
----
+### Run it in 10 seconds (right now)
 
-## 🚀 Core Capabilities
+```bash
+git clone https://github.com/akosczink/secund-agentic.git
+cd secund-agentic
+npm install
+npx ts-node run.ts
+```
 
-- Predicts churn & burnout risk using structured signal pathways  
-- Designs *dignity-first* interventions (no surveillance, no productivity-policing)  
-- Executes autonomous actions when thresholds are crossed  
-- Reflects on outcomes and self-adjusts  
-- Built on **18 SECUND self-improving loops**  
-- Zero-tofu, deterministic decision core  
+**Live output (just ran):**
+```json
+{
+  "risk": 0.487,
+  "recommendation": "Check in with employee — negative sentiment trend",
+  "loopsEngaged": [
+    "Burnout Early Warning Loop",
+    "Sentiment Loop",
+    "Workload Equity Loop"
+  ]
+}
+```
 
-This prototype demonstrates the fundamental mechanisms behind the  
-upcoming **SECUND OS** real-world retention engine.
+### The vision
+- 18 interconnected agentic loops (Individual → Team → Systemic)  
+- Dignity is non-negotiable – overrides all business logic if needed  
+- No activity tracking, no mood forms, no screenshots – still more accurate than surveillance-based tools
 
----
+Full architecture & philosophy: [**BOOK_OF_LOOPS.md**](BOOK_OF_LOOPS.md)
 
-## 📘 Complete Architecture
+### Looking for 3 pilot companies (50–300 people)
+Free access · December 2025 – February 2026 · Full Slack + Supabase integration
 
-The full architecture — including all decision loops, diagrams,  
-mechanisms, and multi-level system mapping — is documented in:
+DM me @akosczink on X if you're in.
 
-👉 **[BOOK_OF_LOOPS.md](./BOOK_OF_LOOPS.md)**
+> “People are not resources. People are the purpose.”
 
-This includes:
-- the **18 agentic loops**  
-- the **tri-level architecture**  
-  (Individual → Organizational → Systemic)  
-- the **V1 retention model**  
-- evaluation notes  
-
----
-
-## 📁 Repository Structure
-/src
-├── agentic-retention-loop.ts # core retention/burnout loop (v0.1)
-├── retention-agent.ts # high-level agent wrapper
-└── ...
-package.json # minimal TS runtime
-tsconfig.json # strict TS configuration
-.gitignore # TS-ready defaults
-
-This structure will expand as additional loops and integrations  
-enter the public layer of the project.
-
----
-
-## 🧠 Philosophy
-
-**Human dignity is the invariant.  
-Agentic autonomy is the engine.  
-Reflection is the governance.**
-
-We design systems that support people —  
-*never systems that monitor or control them.*
-
----
-
-## 🛣️ Public Research Roadmap
-
-- Agentic Wednesday demo  
-- Burnout multi-loop expansion (v0.2)  
-- Team-level + systemic loop integration (v0.3)  
-- Supabase + Stripe activation  
-- Employer pilot ×3  
-- SECUND OS integration bridge (v1.0)  
-
----
-
-Built by **Ákos Czink**  
-Part of the **SECUND — The Dignity OS** research ecosystem.
+Built with conviction by Ákos József Czink · 2025
