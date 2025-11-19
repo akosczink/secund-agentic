@@ -11,8 +11,8 @@ async function main() {
     burnoutRisk: 0.41,
     sentimentScore: -0.12,
     workload: 0.88,
-    motivation: 0.5 
-    // A 'fairnessScore' sort kivettük, ez okozta a hibát!
+    motivation: 0.5
+    // ITT VOLT A HIBA: A fairnessScore sort teljesen töröltük!
   };
 
   console.log("📥  INPUT SIGNAL RECEIVED:");
@@ -23,7 +23,7 @@ async function main() {
 
   console.log("\n✅  DECISION GENERATED:");
   console.log(JSON.stringify(result, null, 2));
-  
+
   console.log("\n🔐  Dignity Protocol Verified: Identity hashed, raw data discarded.");
 }
 
