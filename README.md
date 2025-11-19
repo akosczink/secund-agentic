@@ -1,4 +1,4 @@
-# SECUND – Dignity-First Agentic Retention Engine
+# SECUND Shield – Dignity-First Agentic Retention Engine
 
 Autonomous retention & burnout prevention system that **never tracks, scores, or surveys employees**.
 
