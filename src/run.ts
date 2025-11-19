@@ -1,4 +1,3 @@
-// run.ts
 import { retentionAgent } from "./src/retention-agent";
 import { AgentSignal } from "./src/types";
 
@@ -11,7 +10,8 @@ async function main() {
     performance: 0.85,
     burnoutRisk: 0.41,
     sentimentScore: -0.12,
-    workload: 0.88 // High workload triggers Loop 4
+    workload: 0.88
+    // A 'motivation' sort kivettük, hogy ne okozzon típus-hibát
   };
 
   console.log("📥  INPUT SIGNAL RECEIVED:");
