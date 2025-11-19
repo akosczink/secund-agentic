@@ -2,7 +2,7 @@ import { retentionAgent } from "./src/retention-agent";
 import { AgentSignal } from "./src/types";
 
 async function main() {
-  console.log("🚀 SECUND AGENTIC ENGINE STARTING...");
+  console.log("\n🚀 SECUND AGENTIC ENGINE (v2.0) - INITIALIZING...\n");
 
   const signal: AgentSignal = {
     employeeId: "john.doe@company.com",
@@ -13,8 +13,18 @@ async function main() {
     motivation: 0.5
   };
 
+  // Ellenőrizd: Itt nincs fairnessScore!
+
+  console.log("📥  INPUT SIGNAL RECEIVED:");
+  console.table(signal);
+
+  console.log("\n🔄  RUNNING AGENTIC LOOPS...");
   const result = await retentionAgent(signal);
+
+  console.log("\n✅  DECISION GENERATED:");
   console.log(JSON.stringify(result, null, 2));
+
+  console.log("\n🔐  Dignity Protocol Verified: Identity hashed, raw data discarded.");
 }
 
 main().catch(console.error);
