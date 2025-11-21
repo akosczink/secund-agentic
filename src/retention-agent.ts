@@ -11,27 +11,7 @@ const DYNAMIC_WEIGHTS: ModelWeights = {
   fairness: 0.05
 };
 
-const clampWithNote = (
-  value: number,
-  min: number,
-  max: number,
-  field: string,
-  notes: string[]
-) => {
-  if (Number.isNaN(value)) {
-    notes.push(`${field} was NaN; defaulted to ${min}`);
-    return min;
-  }
-  if (value < min) {
-    notes.push(`${field} clamped from ${value} to ${min}`);
-    return min;
-  }
-  if (value > max) {
-    notes.push(`${field} clamped from ${value} to ${max}`);
-    return max;
-  }
-  return value;
-};
+const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 
 export async function retentionAgent(signal: AgentSignal): Promise<AgentResult> {
   const start = Date.now();
@@ -44,25 +24,22 @@ export async function retentionAgent(signal: AgentSignal): Promise<AgentResult> 
   // 2. CALCULATE RISK
   // Sentiment is inverted (Higher sentiment = Lower risk)
   // Normalized: (-1 to 1) -> (0 to 1)
-  const sentiment = clampWithNote(signal.sentimentScore, -1, 1, 'sentimentScore', notes);
-  const burnout = clampWithNote(signal.burnoutRisk, 0, 1, 'burnoutRisk', notes);
-  const workload = clampWithNote(signal.workload, 0, 1, 'workload', notes);
-  const motivation = clampWithNote(signal.motivation, 0, 1, 'motivation', notes);
-  const fairness = clampWithNote(signal.fairnessScore, 0, 1, 'fairnessScore', notes);
+  const sentiment = clamp(signal.sentimentScore, -1, 1);
+  const burnout = clamp(signal.burnoutRisk, 0, 1);
+  const workload = clamp(signal.workload, 0, 1);
+  const motivation = clamp(signal.motivation, 0, 1);
+  const fairness = clamp(signal.fairnessScore, 0, 1);
 
   const normalizedSentimentRisk = 1 - ((sentiment + 1) / 2);
   const motivationRisk = 1 - motivation;
   const fairnessRisk = 1 - fairness;
 
-  const riskBreakdown = {
-    burnout: burnout * DYNAMIC_WEIGHTS.burnout,
-    sentiment: normalizedSentimentRisk * DYNAMIC_WEIGHTS.sentiment,
-    workload: workload * DYNAMIC_WEIGHTS.workload,
-    motivation: motivationRisk * DYNAMIC_WEIGHTS.motivation,
-    fairness: fairnessRisk * DYNAMIC_WEIGHTS.fairness
-  };
-
-  const riskScore = Object.values(riskBreakdown).reduce((sum, value) => sum + value, 0);
+  const riskScore =
+    (burnout * DYNAMIC_WEIGHTS.burnout) +
+    (normalizedSentimentRisk * DYNAMIC_WEIGHTS.sentiment) +
+    (workload * DYNAMIC_WEIGHTS.workload) +
+    (motivationRisk * DYNAMIC_WEIGHTS.motivation) +
+    (fairnessRisk * DYNAMIC_WEIGHTS.fairness);
 
   // 3. DECIDE INTERVENTION
   let recommendation = "";
@@ -88,10 +65,6 @@ export async function retentionAgent(signal: AgentSignal): Promise<AgentResult> 
   if (fairness < 0.6 && !activeLoops.includes("Loop 7: Fairness & Inclusion")) {
     activeLoops.push("Loop 7: Fairness & Inclusion");
     recommendation = `${recommendation} (Include fairness audit.)`;
-  }
-
-  if (!notes.length) {
-    notes.push("All input signals within expected bounds; no clamping applied.");
   }
 
   // 4. RETURN RESULT

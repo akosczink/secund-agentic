@@ -26,15 +26,6 @@ async function run() {
   );
   assert.ok(/^[a-f0-9]{12}$/.test(baselineResult.meta.anonymizedId), 'anonymized id should be hashed');
   assert.notEqual(baselineResult.meta.anonymizedId, baselineSignal.employeeId, 'raw identity must not leak');
-  assert.equal(
-    Number(Object.values(baselineResult.explainability.riskBreakdown).reduce((a, b) => a + b, 0).toFixed(3)),
-    baselineResult.risk,
-    'risk breakdown should sum to published risk'
-  );
-  assert.ok(
-    baselineResult.explainability.notes.includes('All input signals within expected bounds; no clamping applied.'),
-    'baseline should note safe operating window'
-  );
 
   const fairnessSignal: AgentSignal = {
     employeeId: 'alice@example.com',
@@ -57,10 +48,6 @@ async function run() {
     'fairness loop should engage when equity signal drops'
   );
   assert.equal(fairnessResult.meta.dignityProtocol, 'ACTIVE', 'dignity protocol flag should remain set');
-  assert.ok(
-    fairnessResult.explainability.notes.length > 0,
-    'fairness path should preserve explainability notes'
-  );
 
   console.log('✅ retention-agent tests passed');
 }
