@@ -32,12 +32,18 @@ export async function retentionAgent(signal: AgentSignal): Promise<AgentResult> 
   const motivationRisk = 1 - motivation;
   const fairnessRisk = 1 - fairness;
 
-  const riskScore =
-    (burnout * DYNAMIC_WEIGHTS.burnout) +
-    (normalizedSentimentRisk * DYNAMIC_WEIGHTS.sentiment) +
-    (workload * DYNAMIC_WEIGHTS.workload) +
-    (motivationRisk * DYNAMIC_WEIGHTS.motivation) +
-    (fairnessRisk * DYNAMIC_WEIGHTS.fairness);
+  const riskBreakdown: Record<keyof ModelWeights, number> = {
+    burnout: burnout * DYNAMIC_WEIGHTS.burnout,
+    sentiment: normalizedSentimentRisk * DYNAMIC_WEIGHTS.sentiment,
+    workload: workload * DYNAMIC_WEIGHTS.workload,
+    motivation: motivationRisk * DYNAMIC_WEIGHTS.motivation,
+    fairness: fairnessRisk * DYNAMIC_WEIGHTS.fairness
+  };
+
+  const riskBreakdownEntries: [keyof ModelWeights, number][] =
+    Object.entries(riskBreakdown) as [keyof ModelWeights, number][];
+
+  const riskScore = riskBreakdownEntries.reduce((sum, [, value]) => sum + value, 0);
 
   // 3. DECIDE INTERVENTION
   let recommendation = "";
@@ -70,6 +76,15 @@ export async function retentionAgent(signal: AgentSignal): Promise<AgentResult> 
     risk: Number(riskScore.toFixed(3)),
     recommendation,
     loopsEngaged: activeLoops,
+    explainability: {
+      riskBreakdown: {
+        burnout: Number(burnout.toFixed(3)),
+        sentiment: Number(normalizedSentimentRisk.toFixed(3)),
+        workload: Number(workload.toFixed(3)),
+        motivation: Number(motivationRisk.toFixed(3)),
+        fairness: Number(fairnessRisk.toFixed(3))
+      }
+    },
     meta: {
       anonymizedId: secureId,
       processingTimeMs: Date.now() - start,
