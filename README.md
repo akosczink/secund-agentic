@@ -21,24 +21,7 @@ npx ts-node run.ts
   "loopsEngaged": [
     "Meta-Reflection Loop",
     "Loop 4: Workload Equity"
-  ],
-  "explainability": {
-    "riskBreakdown": {
-      "burnout": 0.143,
-      "sentiment": 0.14,
-      "workload": 0.176,
-      "motivation": 0.075,
-      "fairness": 0.014
-    },
-    "notes": [
-      "All input signals within expected bounds; no clamping applied."
-    ]
-  },
-  "meta": {
-    "anonymizedId": "13c03d922335",
-    "processingTimeMs": 1,
-    "dignityProtocol": "ACTIVE"
-  }
+  ]
 }
 ```
 
