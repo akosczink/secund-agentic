@@ -4,7 +4,7 @@
   "description": "Dignity-first agentic decision loops — autonomous retention & burnout prevention engine.",
   "main": "run.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "ts-node --transpile-only tests/retention-agent.test.ts",
     "start": "ts-node run.ts"
   },
   "keywords": [
