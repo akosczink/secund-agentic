@@ -16,7 +16,6 @@ export interface AgentResult {
   loopsEngaged: string[];
   explainability: {
     riskBreakdown: Record<keyof ModelWeights, number>;
-    notes: string[];
   };
   meta: {
     anonymizedId: string;
