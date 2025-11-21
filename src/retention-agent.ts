@@ -1,14 +1,15 @@
 // src/retention-agent.ts
-import { AgentSignal, AgentResult, ModelWeights } from './types';
+import { AgentSignal, AgentResult, ModelWeights, RiskBreakdown } from './types';
 import { DignityGuard } from './security';
 
 // Simulated dynamic weights from the Meta-Loop
 const DYNAMIC_WEIGHTS: ModelWeights = {
-  burnout: 0.35,
-  sentiment: 0.25,
-  workload: 0.20,
+  burnout: 0.3,
+  sentiment: 0.2,
+  workload: 0.2,
   motivation: 0.15,
-  fairness: 0.05
+  fairness: 0.05,
+  performance: 0.1
 };
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
@@ -29,10 +30,12 @@ export async function retentionAgent(signal: AgentSignal): Promise<AgentResult> 
   const workload = clamp(signal.workload, 0, 1);
   const motivation = clamp(signal.motivation, 0, 1);
   const fairness = clamp(signal.fairnessScore, 0, 1);
+  const performance = clamp(signal.performance, 0, 1);
 
   const normalizedSentimentRisk = 1 - ((sentiment + 1) / 2);
   const motivationRisk = 1 - motivation;
   const fairnessRisk = 1 - fairness;
+  const performanceRisk = 1 - performance;
 
   const riskBreakdown: Record<keyof ModelWeights, number> = {
     burnout: burnout * DYNAMIC_WEIGHTS.burnout,
@@ -76,6 +79,7 @@ export async function retentionAgent(signal: AgentSignal): Promise<AgentResult> 
   // 4. RETURN RESULT
   return {
     risk: Number(riskScore.toFixed(3)),
+    riskBreakdown,
     recommendation,
     loopsEngaged: activeLoops,
     explainability: {

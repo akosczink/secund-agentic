@@ -12,6 +12,7 @@ export interface AgentSignal {
 
 export interface AgentResult {
   risk: number;
+  riskBreakdown: RiskBreakdown;
   recommendation: string;
   loopsEngaged: string[];
   explainability: {
@@ -30,4 +31,14 @@ export interface ModelWeights {
   workload: number;
   motivation: number;
   fairness: number;
+  performance: number;
+}
+
+export interface RiskBreakdown {
+  burnout: number;
+  sentiment: number;
+  workload: number;
+  motivation: number;
+  fairness: number;
+  performance: number;
 }

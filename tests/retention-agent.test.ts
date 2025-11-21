@@ -14,11 +14,23 @@ async function run() {
   };
 
   const baselineResult = await retentionAgent(baselineSignal);
-  assert.equal(baselineResult.risk, 0.548, 'baseline risk should match documented output');
+  assert.equal(baselineResult.risk, 0.515, 'baseline risk should match documented output');
   assert.equal(
     baselineResult.recommendation,
     'Workload Equity Alert: Rebalance tickets within 48h.',
     'workload branch should trigger'
+  );
+  assert.deepEqual(
+    baselineResult.riskBreakdown,
+    {
+      burnout: 0.123,
+      sentiment: 0.112,
+      workload: 0.176,
+      motivation: 0.075,
+      fairness: 0.014,
+      performance: 0.015
+    },
+    'risk breakdown should expose weighted contributions'
   );
   assert.ok(
     baselineResult.loopsEngaged.includes('Loop 4: Workload Equity'),
@@ -47,6 +59,7 @@ async function run() {
     fairnessResult.loopsEngaged.includes('Loop 7: Fairness & Inclusion'),
     'fairness loop should engage when equity signal drops'
   );
+  assert.equal(fairnessResult.riskBreakdown.performance, 0.008, 'performance should attenuate risk when high');
   assert.equal(fairnessResult.meta.dignityProtocol, 'ACTIVE', 'dignity protocol flag should remain set');
 
   console.log('✅ retention-agent tests passed');
