@@ -1,5 +1,5 @@
-import { retentionAgent } from "./src/retention-agent";
-import { AgentSignal } from "./src/types";
+import { retentionAgent } from "./retention-agent";
+import { AgentSignal } from "./types";
 
 async function main() {
   console.log("\n🚀 SECUND AGENTIC ENGINE (v2.0) - INITIALIZING...\n");
@@ -10,10 +10,9 @@ async function main() {
     burnoutRisk: 0.41,
     sentimentScore: -0.12,
     workload: 0.88,
-    motivation: 0.5
+    motivation: 0.5,
+    fairnessScore: 0.72
   };
-
-  // Ellenőrizd: Itt nincs fairnessScore!
 
   console.log("📥  INPUT SIGNAL RECEIVED:");
   console.table(signal);

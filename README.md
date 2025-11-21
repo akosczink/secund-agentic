@@ -16,7 +16,15 @@ npx ts-node run.ts
 **Live output (just ran):**
 ```json
 {
-  "risk": 0.548,
+  "risk": 0.515,
+  "riskBreakdown": {
+    "burnout": 0.123,
+    "sentiment": 0.112,
+    "workload": 0.176,
+    "motivation": 0.075,
+    "fairness": 0.014,
+    "performance": 0.015
+  },
   "recommendation": "Workload Equity Alert: Rebalance tickets within 48h.",
   "loopsEngaged": [
     "Meta-Reflection Loop",
