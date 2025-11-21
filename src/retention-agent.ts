@@ -17,6 +17,8 @@ const clamp = (value: number, min: number, max: number) => Math.min(max, Math.ma
 export async function retentionAgent(signal: AgentSignal): Promise<AgentResult> {
   const start = Date.now();
 
+  const notes: string[] = [];
+
   // 1. DIGNITY PROTOCOL: Anonymize immediately
   const secureId = DignityGuard.hashIdentity(signal.employeeId);
 
@@ -35,25 +37,18 @@ export async function retentionAgent(signal: AgentSignal): Promise<AgentResult> 
   const fairnessRisk = 1 - fairness;
   const performanceRisk = 1 - performance;
 
-  const riskComponents: RiskBreakdown = {
+  const riskBreakdown: Record<keyof ModelWeights, number> = {
     burnout: burnout * DYNAMIC_WEIGHTS.burnout,
     sentiment: normalizedSentimentRisk * DYNAMIC_WEIGHTS.sentiment,
     workload: workload * DYNAMIC_WEIGHTS.workload,
     motivation: motivationRisk * DYNAMIC_WEIGHTS.motivation,
-    fairness: fairnessRisk * DYNAMIC_WEIGHTS.fairness,
-    performance: performanceRisk * DYNAMIC_WEIGHTS.performance
+    fairness: fairnessRisk * DYNAMIC_WEIGHTS.fairness
   };
 
-  const riskScore = Object.values(riskComponents).reduce((sum, value) => sum + value, 0);
+  const riskBreakdownEntries: [keyof ModelWeights, number][] =
+    Object.entries(riskBreakdown) as [keyof ModelWeights, number][];
 
-  const riskBreakdown: RiskBreakdown = {
-    burnout: Number(riskComponents.burnout.toFixed(3)),
-    sentiment: Number(riskComponents.sentiment.toFixed(3)),
-    workload: Number(riskComponents.workload.toFixed(3)),
-    motivation: Number(riskComponents.motivation.toFixed(3)),
-    fairness: Number(riskComponents.fairness.toFixed(3)),
-    performance: Number(riskComponents.performance.toFixed(3))
-  };
+  const riskScore = riskBreakdownEntries.reduce((sum, [, value]) => sum + value, 0);
 
   // 3. DECIDE INTERVENTION
   let recommendation = "";
@@ -87,6 +82,15 @@ export async function retentionAgent(signal: AgentSignal): Promise<AgentResult> 
     riskBreakdown,
     recommendation,
     loopsEngaged: activeLoops,
+    explainability: {
+      riskBreakdown: {
+        burnout: Number(burnout.toFixed(3)),
+        sentiment: Number(normalizedSentimentRisk.toFixed(3)),
+        workload: Number(workload.toFixed(3)),
+        motivation: Number(motivationRisk.toFixed(3)),
+        fairness: Number(fairnessRisk.toFixed(3))
+      }
+    },
     meta: {
       anonymizedId: secureId,
       processingTimeMs: Date.now() - start,
