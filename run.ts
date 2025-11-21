@@ -10,10 +10,9 @@ async function main() {
     burnoutRisk: 0.41,
     sentimentScore: -0.12,
     workload: 0.88,
-    motivation: 0.5
+    motivation: 0.5,
+    fairnessScore: 0.72
   };
-
-  // Ellenőrizd: Itt nincs fairnessScore!
 
   console.log("📥  INPUT SIGNAL RECEIVED:");
   console.table(signal);
