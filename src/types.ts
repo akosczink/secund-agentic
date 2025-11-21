@@ -14,6 +14,10 @@ export interface AgentResult {
   risk: number;
   recommendation: string;
   loopsEngaged: string[];
+  explainability: {
+    riskBreakdown: Record<string, number>;
+    notes: string[];
+  };
   meta: {
     anonymizedId: string;
     processingTimeMs: number;

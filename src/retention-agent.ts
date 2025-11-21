@@ -16,6 +16,8 @@ const clamp = (value: number, min: number, max: number) => Math.min(max, Math.ma
 export async function retentionAgent(signal: AgentSignal): Promise<AgentResult> {
   const start = Date.now();
 
+  const notes: string[] = [];
+
   // 1. DIGNITY PROTOCOL: Anonymize immediately
   const secureId = DignityGuard.hashIdentity(signal.employeeId);
 
@@ -70,6 +72,12 @@ export async function retentionAgent(signal: AgentSignal): Promise<AgentResult> 
     risk: Number(riskScore.toFixed(3)),
     recommendation,
     loopsEngaged: activeLoops,
+    explainability: {
+      riskBreakdown: Object.fromEntries(
+        Object.entries(riskBreakdown).map(([key, value]) => [key, Number(value.toFixed(3))])
+      ),
+      notes
+    },
     meta: {
       anonymizedId: secureId,
       processingTimeMs: Date.now() - start,
