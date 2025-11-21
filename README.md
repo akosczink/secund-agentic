@@ -16,12 +16,11 @@ npx ts-node run.ts
 **Live output (just ran):**
 ```json
 {
-  "risk": 0.487,
-  "recommendation": "Check in with employee — negative sentiment trend",
+  "risk": 0.548,
+  "recommendation": "Workload Equity Alert: Rebalance tickets within 48h.",
   "loopsEngaged": [
-    "Burnout Early Warning Loop",
-    "Sentiment Loop",
-    "Workload Equity Loop"
+    "Meta-Reflection Loop",
+    "Loop 4: Workload Equity"
   ]
 }
 ```
