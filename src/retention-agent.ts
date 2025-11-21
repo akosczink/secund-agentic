@@ -11,8 +11,32 @@ const DYNAMIC_WEIGHTS: ModelWeights = {
   fairness: 0.05
 };
 
+const clampWithNote = (
+  value: number,
+  min: number,
+  max: number,
+  field: string,
+  notes: string[]
+) => {
+  if (Number.isNaN(value)) {
+    notes.push(`${field} was NaN; defaulted to ${min}`);
+    return min;
+  }
+  if (value < min) {
+    notes.push(`${field} clamped from ${value} to ${min}`);
+    return min;
+  }
+  if (value > max) {
+    notes.push(`${field} clamped from ${value} to ${max}`);
+    return max;
+  }
+  return value;
+};
+
 export async function retentionAgent(signal: AgentSignal): Promise<AgentResult> {
   const start = Date.now();
+
+  const notes: string[] = [];
 
   // 1. DIGNITY PROTOCOL: Anonymize immediately
   const secureId = DignityGuard.hashIdentity(signal.employeeId);
@@ -20,30 +44,55 @@ export async function retentionAgent(signal: AgentSignal): Promise<AgentResult> 
   // 2. CALCULATE RISK
   // Sentiment is inverted (Higher sentiment = Lower risk)
   // Normalized: (-1 to 1) -> (0 to 1)
-  const normalizedSentimentRisk = 1 - ((signal.sentimentScore + 1) / 2);
-  
-  const riskScore = 
-    (signal.burnoutRisk * DYNAMIC_WEIGHTS.burnout) +
-    (normalizedSentimentRisk * DYNAMIC_WEIGHTS.sentiment) +
-    (signal.workload * DYNAMIC_WEIGHTS.workload) +
-    (0.5 * DYNAMIC_WEIGHTS.motivation); // Baseline assumption
+  const sentiment = clampWithNote(signal.sentimentScore, -1, 1, 'sentimentScore', notes);
+  const burnout = clampWithNote(signal.burnoutRisk, 0, 1, 'burnoutRisk', notes);
+  const workload = clampWithNote(signal.workload, 0, 1, 'workload', notes);
+  const motivation = clampWithNote(signal.motivation, 0, 1, 'motivation', notes);
+  const fairness = clampWithNote(signal.fairnessScore, 0, 1, 'fairnessScore', notes);
+
+  const normalizedSentimentRisk = 1 - ((sentiment + 1) / 2);
+  const motivationRisk = 1 - motivation;
+  const fairnessRisk = 1 - fairness;
+
+  const riskBreakdown: Record<keyof ModelWeights, number> = {
+    burnout: burnout * DYNAMIC_WEIGHTS.burnout,
+    sentiment: normalizedSentimentRisk * DYNAMIC_WEIGHTS.sentiment,
+    workload: workload * DYNAMIC_WEIGHTS.workload,
+    motivation: motivationRisk * DYNAMIC_WEIGHTS.motivation,
+    fairness: fairnessRisk * DYNAMIC_WEIGHTS.fairness
+  };
+
+  const riskEntries = Object.entries(riskBreakdown) as [keyof ModelWeights, number][];
+  const riskScore = riskEntries.reduce((sum, [, value]) => sum + value, 0);
 
   // 3. DECIDE INTERVENTION
   let recommendation = "";
   const activeLoops: string[] = ["Meta-Reflection Loop"];
 
-  if (signal.burnoutRisk > 0.6) {
+  if (burnout > 0.6) {
     recommendation = "URGENT: Burnout Risk High. Suggest 'Decompression Day'.";
     activeLoops.push("Loop 1: Burnout Early Warning");
-  } else if (signal.workload > 0.85) {
+  } else if (workload > 0.85) {
     // Ez fog bekapcsolni a demóban!
     recommendation = "Workload Equity Alert: Rebalance tickets within 48h.";
     activeLoops.push("Loop 4: Workload Equity");
-  } else if (signal.sentimentScore < -0.2) {
+  } else if (sentiment < -0.2) {
     recommendation = "Check in with employee — negative sentiment trend.";
     activeLoops.push("Loop 12: Sentiment Loop");
+  } else if (fairness < 0.6) {
+    recommendation = "Equity Scan: fairness signal low — run allocation audit.";
+    activeLoops.push("Loop 7: Fairness & Inclusion");
   } else {
     recommendation = "Stable state. Continue monitoring.";
+  }
+
+  if (fairness < 0.6 && !activeLoops.includes("Loop 7: Fairness & Inclusion")) {
+    activeLoops.push("Loop 7: Fairness & Inclusion");
+    recommendation = `${recommendation} (Include fairness audit.)`;
+  }
+
+  if (!notes.length) {
+    notes.push("All input signals within expected bounds; no clamping applied.");
   }
 
   // 4. RETURN RESULT
@@ -51,6 +100,12 @@ export async function retentionAgent(signal: AgentSignal): Promise<AgentResult> 
     risk: Number(riskScore.toFixed(3)),
     recommendation,
     loopsEngaged: activeLoops,
+    explainability: {
+      riskBreakdown: Object.fromEntries(
+        riskEntries.map(([key, value]) => [key, Number(value.toFixed(3))])
+      ),
+      notes
+    },
     meta: {
       anonymizedId: secureId,
       processingTimeMs: Date.now() - start,

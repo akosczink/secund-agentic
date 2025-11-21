@@ -16,13 +16,29 @@ npx ts-node run.ts
 **Live output (just ran):**
 ```json
 {
-  "risk": 0.487,
-  "recommendation": "Check in with employee — negative sentiment trend",
+  "risk": 0.548,
+  "recommendation": "Workload Equity Alert: Rebalance tickets within 48h.",
   "loopsEngaged": [
-    "Burnout Early Warning Loop",
-    "Sentiment Loop",
-    "Workload Equity Loop"
-  ]
+    "Meta-Reflection Loop",
+    "Loop 4: Workload Equity"
+  ],
+  "explainability": {
+    "riskBreakdown": {
+      "burnout": 0.143,
+      "sentiment": 0.14,
+      "workload": 0.176,
+      "motivation": 0.075,
+      "fairness": 0.014
+    },
+    "notes": [
+      "All input signals within expected bounds; no clamping applied."
+    ]
+  },
+  "meta": {
+    "anonymizedId": "13c03d922335",
+    "processingTimeMs": 1,
+    "dignityProtocol": "ACTIVE"
+  }
 }
 ```
 
